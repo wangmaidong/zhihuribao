@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="src/assets/reset.min.css">
+    <style>
+        html {
+            font-size: 100px;
+        }
+        html,
+        body {
+            height: 100%;
+            background: #F4F4F4;
+        }
+
+        #root {
+            margin: 0 auto;
+            max-width: 750px;
+            height: 100%;
+            background: #FFF;
+        }
+
+        .box {
+            width: 3.28rem;
+            height: 1.64rem;
+            line-height: 1.64rem;
+            text-align: center;
+            font-size: .4rem;
+            background: lightblue;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        (function () {
+            function computed() {
+                let html = document.documentElement
+                // 获取当前页面的宽度
+                let deviceWidth = html
+                // 设计稿的宽度
+                let designWidth = 750
+                // 如果设备宽度超过了设计稿宽度就不再增加根元素的字体大小
+                if (deviceWidth >= designWidth) {
+                    html.style.fontSize = "100px"
+                    return
+                }
+                // 等比例计算出根元素的字体大小
+                let ratio = (deviceWidth / designWidth) * 100
+                html.style.fontSize = ratio + 'px'
+            }
+            computed()
+            window.addEventListener('resize', computed)
+        })()
+    </script>
+    <div id="root">
+        <div class="box">
+            移动端响应式布局
+        </div>
+    </div>
+</body>
+
+</html>
